@@ -1,164 +1,152 @@
-Office Asset Management API
+Office Asset Management API 🚀
+A secure and lightweight REST API for managing office assets like computers, monitors, desks, and chairs. Built with PHP and MySQL, it offers robust CRUD operations and type-based filtering with a focus on security and simplicity.
 
-A secure REST API for managing office assets, simulating an office inventory system using PHP and MySQL.
-
-Table of Contents
+📑 Table of Contents
 
 Overview
-
 Features
-
 Project Structure
-
 Requirements
-
 Installation
-
 Database Setup
-
 Security Measures
-
 API Endpoints
-
 Usage
-
 Contributing
-
 License
 
-Overview
 
-This project provides a REST API to manage office assets such as computers, monitors, desks, and chairs. It supports CRUD operations and filtering, with a focus on security and simplicity for development teams.
+🌟 Overview
+The Office Asset Management API provides a streamlined solution for tracking office inventory. It supports CRUD operations, type-based filtering, and pagination, all wrapped in a secure and developer-friendly package. Perfect for teams managing office assets with ease and reliability.
 
-Features
+✨ Features
 
-CRUD operations for office assets
+🛠️ CRUD Operations: Create, read, update, and delete office assets.
+🔎 Type Filtering: Filter assets by type (e.g., Computer, Monitor).
+🌐 JSON API with CORS: Seamless integration with frontend applications.
+📄 Pagination: Retrieve assets 10 per page for efficient data handling.
+🔒 Security: CSRF protection, input sanitization, security headers, and prepared statements.
 
-Filter assets by type (e.g., Computer, Monitor)
 
-JSON-based API with CORS support
-
-Pagination for listing assets
-
-Input validation, CSRF protection, and security headers
-
-Project Structure
-
+📂 Project Structure
 office-asset-management/
-├── config/
-│ └── db.php # Database configuration
-├── sql/
-│ └── asset.sql # Database schema and seed data
-├── src/
-│ ├── api/
-│ │ ├── create.php # Create asset endpoint
-│ │ ├── delete.php # Delete asset endpoint
-│ │ ├── read.php # Read all assets endpoint
-│ │ ├── filter.php # Filter assets by type
-│ │ └── update.php # Update asset endpoint
-│ └── utils/
-│ └── security.php # Security utilities (CSRF, sanitization)
-├── .gitignore # Git ignore file
-└── README.md # Project documentation
+├── 📁 config/
+│   └── db.php              # Database configuration
+├── 📁 sql/
+│   └── asset.sql           # Database schema and seed data
+├── 📁 src/
+│   ├── 📁 api/
+│   │   ├── create.php      # Create asset endpoint
+│   │   ├── delete.php      # Delete asset endpoint
+│   │   ├── read.php        # Read all assets endpoint
+│   │   ├── filter.php      # Filter assets by type
+│   │   └── update.php      # Update asset endpoint
+│   ├── 📁 utils/
+│   │   └── security.php    # Security utilities (CSRF, sanitization)
+├── 📄 .gitignore           # Git ignore file
+└── 📄 README.md            # Project documentation
 
-Requirements
 
-PHP 8.0 or higher
+🛠️ Requirements
 
-MySQL or MariaDB
+PHP: 8.0 or higher
+Database: MySQL or MariaDB
+Web Server: Apache, Nginx, or similar
+PHP Session Support: For CSRF protection
 
-Web server (e.g., Apache, Nginx)
 
-PHP session support
-
-Installation
+⚙️ Installation
 
 Clone the repository:
-
 git clone https://github.com/yourusername/office-asset-management.git
 cd office-asset-management
 
-Configure database credentials in config/db.php:
 
+Configure database credentials in config/db.php:
 $user = 'your_username'; // Replace with your database username
 $pass = 'your_password'; // Replace with your database password
 $dbname = 'asset';
 
-Security Note: Avoid hardcoding credentials in production. Consider using environment variables (e.g., getenv()) or a configuration file outside the web root.
+⚠️ Security Note: Avoid hardcoding credentials in production. Use environment variables (e.g., getenv()) or move config/db.php outside the web root.
 
-Database Setup
 
-Create a MySQL database named asset:
 
+🗄️ Database Setup
+
+Create the asset database:
 mysql -u your_username -p -e "CREATE DATABASE asset"
 
-Import the sql/asset.sql file:
 
+Import the schema:
 mysql -u your_username -p asset < sql/asset.sql
 
-Security Measures
+
+
+
+🔐 Security Measures
 
 CSRF Protection: POST, PATCH, and DELETE endpoints require a valid CSRF token.
-
-Input Sanitization: All inputs are sanitized to prevent XSS.
-
+Input Sanitization: Prevents XSS by sanitizing all inputs.
 Security Headers: Includes CSP, X-Content-Type-Options, X-Frame-Options, and X-XSS-Protection.
-
-Prepared Statements: Prevents SQL injection.
+Prepared Statements: Mitigates SQL injection risks.
 
 Recommendations:
 
-Implement JWT or API keys for authentication.
+🔑 Implement JWT or API keys for authentication.
+⏱️ Use rate-limiting middleware (e.g., Apache/Nginx).
+🔗 Enable HTTPS in production.
+📂 Move config/db.php outside the web root.
+🌍 Use environment variables for credentials.
 
-Use a rate-limiting middleware (e.g., via Apache/Nginx).
 
-Enable HTTPS in production.
+🌐 API Endpoints
 
-Move config/db.php outside the web root in production.
 
-Use environment variables instead of hardcoding credentials.
 
-API Endpoints
+Method
+Endpoint
+Description
+Request Body/Example Response
 
-POST /src/api/create.php: Create a new asset
 
-Body: {"code": "AC011", "type": "Computer", "description": "Gaming PC", "serial": "SN011", "csrf_token": "your_csrf_token"}
 
-Response: {"status": "Complete", "message": "Asset created"}
+POST
+/src/api/create.php
+Create a new asset
+Body: {"code": "AC011", "type": "Computer", "description": "Gaming PC", "serial": "SN011", "csrf_token": "your_csrf_token"}Response: {"status": "Complete", "message": "Asset created"}
 
-GET /src/api/read.php?page=1: Retrieve all assets (10 per page)
 
+GET
+/src/api/read.php?page=1
+Retrieve assets (10 per page)
 Response: [{"id": 1, "code": "AC001", "type": "Computer", "description": "Desktop PC", "serial": "SN001"}, ...]
 
-GET /src/api/filter.php?type=Computer: Filter assets by type (max 5 results)
 
+GET
+/src/api/filter.php?type=Computer
+Filter assets by type (max 5)
 Response: [{"id": 1, "code": "AC001", "type": "Computer", "description": "Desktop PC", "serial": "SN001"}, ...]
 
-PATCH /src/api/update.php: Update an existing asset
 
-Body: {"id": 1, "code": "AC001", "type": "Computer", "description": "Updated PC", "serial": "SN001", "csrf_token": "your_csrf_token"}
+PATCH
+/src/api/update.php
+Update an existing asset
+Body: {"id": 1, "code": "AC001", "type": "Computer", "description": "Updated PC", "serial": "SN001", "csrf_token": "your_csrf_token"}Response: {"status": "Complete", "message": "Asset updated"}
 
-Response: {"status": "Complete", "message": "Asset updated"}
 
-DELETE /src/api/delete.php: Delete an asset
+DELETE
+/src/api/delete.php
+Delete an asset
+Body: {"id": 1, "csrf_token": "your_csrf_token"}Response: {"status": "Complete", "message": "Asset deleted"}
 
-Body: {"id": 1, "csrf_token": "your_csrf_token"}
 
-Response: {"status": "Complete", "message": "Asset deleted"}
 
-Usage
+🚀 Usage
 
-Deploy the project to a web server with PHP and MySQL support.
-
+Deploy to a web server with PHP and MySQL support.
 Configure config/db.php with your database credentials.
-
-Generate a CSRF token for POST/PATCH/DELETE requests:
-
-Create a separate endpoint (e.g., src/api/get_csrf.php) or include in your frontend logic.
-
-Example get_csrf.php:
-
-<?php
+Generate CSRF tokens for POST/PATCH/DELETE requests:
+Create src/api/get_csrf.php:<?php
 session_start();
 require_once __DIR__ . '/../utils/security.php';
 setSecurityHeaders();
@@ -166,22 +154,39 @@ header("Content-type: application/json; charset=utf-8");
 echo json_encode(["csrf_token" => generateCsrfToken()]);
 ?>
 
-Test the API using Postman or curl. Example:
 
-curl -X POST http://localhost/src/api/create.php -H "Content-Type: application/json" -d '{"code":"AC011","type":"Computer","description":"Gaming PC","serial":"SN011","csrf_token":"your_csrf_token"}'
+Fetch from frontend:fetch('/src/api/get_csrf.php')
+    .then(response => response.json())
+    .then(data => {
+        // Use data.csrf_token in requests
+    });
 
-Contributing
+
+
+
+Test the API with Postman or curl:curl -X POST http://localhost/src/api/create.php \
+     -H "Content-Type: application/json" \
+     -d '{"code":"AC011","type":"Computer","description":"Gaming PC","serial":"SN011","csrf_token":"your_csrf_token"}'
+
+
+
+
+🤝 Contributing
 
 Fork the repository.
+Create a feature branch:git checkout -b feature/your-feature
 
-Create a feature branch: git checkout -b feature/your-feature
 
-Commit your changes: git commit -m "Add your feature"
+Commit your changes:git commit -m "Add your feature"
 
-Push to the branch: git push origin feature/your-feature
+
+Push to the branch:git push origin feature/your-feature
+
 
 Create a Pull Request.
 
-License
 
+📜 License
 This project is licensed under the MIT License.
+
+Built with ❤️ for efficient office asset management.
