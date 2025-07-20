@@ -1,9 +1,5 @@
 # Office Asset Management API 📦
 
----
-
-## 📖 Overview
-
 A secure and efficient REST API for managing office assets. Track computers, monitors, and office furniture with comprehensive management capabilities and security features.
 
 ---
@@ -17,8 +13,6 @@ A secure and efficient REST API for managing office assets. Track computers, mon
 * **Security**: CSRF, Input Sanitization
 * **Integration**: CORS Enabled
 
----
-
 ## 📁 Project Structure
 
 ```
@@ -30,8 +24,6 @@ office-asset/
 └── sql/             # Database schema
 ```
 
----
-
 ## 💾 Database Schema
 
 | Field | Type | Description |
@@ -41,8 +33,6 @@ office-asset/
 | `type` | VARCHAR(50) | Computer, Monitor, etc. |
 | `description` | TEXT | Asset details |
 | `serial` | VARCHAR(50) | Serial number |
-
----
 
 ## ✨ Features
 ### Asset Management
@@ -57,8 +47,6 @@ office-asset/
 * 🖥️ Monitor inventory
 * 🪑 Furniture management
 * 📦 Other office items
-
----
 
 ## 🚀 Getting Started
 
@@ -76,8 +64,6 @@ $pass = 'your_password';
 $dbname = 'asset';
 
 ```
-
----
 
 ## 📡 API Reference
 
@@ -129,8 +115,6 @@ Content-Type: application/json
 
 ```
 
----
-
 ### API Usage Example
 ```javascript
 // Create new asset
@@ -149,8 +133,6 @@ const createAsset = async (assetData) => {
     return response.json();
 };
 ```
-
----
 
 ## 🤝 Contributing
 
@@ -173,8 +155,6 @@ const createAsset = async (assetData) => {
    git push origin feature/asset-feature
    ```
 6. Create a **Pull Request**
-
----
 
 ## 📝 License
 
