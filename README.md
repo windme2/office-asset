@@ -2,8 +2,6 @@
 
 A secure and efficient REST API for managing office assets. Track computers, monitors, and office furniture with comprehensive management capabilities and security features.
 
----
-
 ## 🛠️ Tech Stack
 
 * **Backend**: PHP 8.0+
