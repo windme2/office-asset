@@ -11,17 +11,6 @@ A secure and efficient REST API for managing office assets. Track computers, mon
 * **Security**: CSRF, Input Sanitization
 * **Integration**: CORS Enabled
 
-## 📁 Project Structure
-
-```
-office-asset/
-├── src/
-│   ├── api/          # API endpoints (CRUD operations)
-│   └── utils/        # Security and helper functions
-├── config/           # Configuration files
-└── sql/             # Database schema
-```
-
 ## 💾 Database Schema
 
 | Field | Type | Description |
@@ -45,6 +34,8 @@ office-asset/
 * 🖥️ Monitor inventory
 * 🪑 Furniture management
 * 📦 Other office items
+
+---
 
 ## 🚀 Getting Started
 
